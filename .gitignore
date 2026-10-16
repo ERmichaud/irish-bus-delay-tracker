@@ -33,3 +33,6 @@ out/
 
 # macOS files
 .DS_Store
+
+# Maven build output
+target/
