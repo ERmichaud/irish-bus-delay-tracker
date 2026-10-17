@@ -1,11 +1,13 @@
 package dev.busreliability;
 
+import org.springframework.stereotype.Service;
 import java.net.http.HttpClient;
 import java.net.URI;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.io.IOException;
 
+@Service
 public class NtaApiService {
     private final HttpClient client = HttpClient.newHttpClient();
     private final String apiKey = System.getenv("NTA_API_KEY");

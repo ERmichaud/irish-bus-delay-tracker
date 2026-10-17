@@ -10,6 +10,12 @@ import java.util.HashMap;
 @RestController
 public class StatusController {
 
+    private final NtaApiService service;
+
+    public StatusController(NtaApiService service) {
+        this.service = service;
+    }
+
 
     @GetMapping("/api/status")
     public Map<String, String> status() {
@@ -22,7 +28,6 @@ public class StatusController {
     //temp end point
     @GetMapping("/api/delays")
     public Map<String, Object> getDelays() throws IOException, InterruptedException {
-        NtaApiService service = new NtaApiService();
         String url = "https://api.nationaltransport.ie/gtfsr/v2/TripUpdates?format=json";
         String response = service.fetchData(url);
 
