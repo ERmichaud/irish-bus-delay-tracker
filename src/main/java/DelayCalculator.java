@@ -1,14 +1,22 @@
+import java.util.ArrayList;
 public class DelayCalculator {
     public static void main(String[] args) {
-        int[] delays = {2086, 2929, 2854};
-        double avg = 0;
-        for(int i = 0; i < delays.length; i++) {
-            double cur = (double) delays[i] / 60;
-            int stop = i + 1;
-            System.out.printf("Stop %d: %.2f minutes late%n", stop, cur);
-            avg += cur;
+        ArrayList<Integer> delays = new ArrayList<>();
+        delays.add(2086);
+        delays.add(2929);
+        delays.add(2854);
+        double average =  calculateAverage(delays);
+        System.out.printf("New avg: %.2f", average);
+    }
+    public static double calculateAverage(ArrayList<Integer> delays) {
+        if (delays.isEmpty()) {
+            return 0;
         }
-        avg = avg/delays.length;
-        System.out.printf("Average arrival delay: %.2f minutes%n", avg);
+        double average = 0;
+        for(int i = 0; i < delays.size(); i++) {
+            average +=  (double) delays.get(i) / 60;
+        }
+        average /= delays.size();
+        return average;
     }
 }
