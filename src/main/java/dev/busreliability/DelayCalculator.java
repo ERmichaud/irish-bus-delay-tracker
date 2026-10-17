@@ -1,3 +1,5 @@
+package dev.busreliability;
+
 import java.util.ArrayList;
 public class DelayCalculator {
     public static void main(String[] args) {
