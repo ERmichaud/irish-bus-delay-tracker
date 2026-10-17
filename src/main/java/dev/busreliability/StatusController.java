@@ -3,6 +3,7 @@ package dev.busreliability;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -25,6 +26,7 @@ public class StatusController {
         String url = "https://api.nationaltransport.ie/gtfsr/v2/TripUpdates?format=json";
         String response = service.fetchData(url);
 
-        return response.substring(0, Math.min(500, response.length()));
+        ArrayList<Integer> delays = JsonDelayReader.extractDelays(response);
+        return delays.toString();
     }
 }
