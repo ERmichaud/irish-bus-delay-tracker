@@ -31,8 +31,12 @@ public class StatusController {
         String url = "https://api.nationaltransport.ie/gtfsr/v2/TripUpdates?format=json";
         String response = service.fetchData(url);
 
-        ArrayList<Integer> delays = JsonDelayReader.extractDelays(response);
-        double averageDelay = DelayCalculator.calculateAverage(delays);
+        ArrayList<BusDelay> delays = JsonDelayReader.extractDelays(response);
+        ArrayList<Integer> delayValues = new ArrayList<>();
+        for(BusDelay busDelay : delays) {
+            delayValues.add(busDelay.getDelaySeconds());
+        }
+        double averageDelay = DelayCalculator.calculateAverage(delayValues);
 
         Map<String, Object> result = new HashMap<>();
         result.put("totalPredictions", delays.size());

@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class JsonDelayReader {
-    public static ArrayList<Integer> extractDelays(String json) throws IOException {
+    public static ArrayList<BusDelay> extractDelays(String json) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode root = mapper.readTree(json);
         JsonNode entities = root.get("entity");
-        ArrayList<Integer> delays = new ArrayList<>();
+        ArrayList<BusDelay> delays = new ArrayList<>();
         for(int i = 0; i < entities.size(); i++) {
             JsonNode entity = entities.get(i);
             JsonNode tripUpdate = entity.get("trip_update");
@@ -44,7 +44,7 @@ public class JsonDelayReader {
                 JsonNode arrival = stopUpdates.get(j).get("arrival");
                 if(arrival != null && arrival.hasNonNull("delay")) {
                     int delay = arrival.get("delay").asInt();
-                    delays.add(delay);
+                    delays.add(new BusDelay(routeId, delay));
                 }
             }
         }
