@@ -20,13 +20,18 @@ public class StatusController {
     }
 
     //temp end point
-    @GetMapping("/api/test-nta")
-    public String testNta() throws IOException, InterruptedException {
+    @GetMapping("/api/delays")
+    public Map<String, Object> getDelays() throws IOException, InterruptedException {
         NtaApiService service = new NtaApiService();
         String url = "https://api.nationaltransport.ie/gtfsr/v2/TripUpdates?format=json";
         String response = service.fetchData(url);
 
         ArrayList<Integer> delays = JsonDelayReader.extractDelays(response);
-        return delays.toString();
+        double averageDelay = DelayCalculator.calculateAverage(delays);
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("totalPredictions", delays.size());
+        result.put("averagePredictedDelayMinutes", Math.round(averageDelay * 100.0) / 100.0);
+        return result;
     }
 }

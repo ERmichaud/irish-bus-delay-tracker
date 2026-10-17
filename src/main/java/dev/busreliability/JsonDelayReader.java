@@ -18,6 +18,24 @@ public class JsonDelayReader {
             if(tripUpdate == null) {
                 continue;
             }
+            JsonNode trip = tripUpdate.get("trip");
+            if(trip == null || !trip.hasNonNull("route_id")) {
+                continue;
+            }
+            String routeId = trip.get("route_id").asText();
+
+            //IR - Iarnód Éireann
+            //10000 GREEN - Luas green line
+            //10000 RED - Luas red line
+            boolean isBus =
+                    routeId.startsWith("1 ") || //dublin bus
+                            routeId.startsWith("2 ") || //bus Éireann
+                            routeId.startsWith("3 ") || //Go-ahead ireland
+                            routeId.startsWith("03C ") || //Go-ahead
+                            routeId.startsWith("WFRD "); //waterford bus Éireann
+            if(!isBus) {
+                continue;
+            }
             JsonNode stopUpdates = tripUpdate.get("stop_time_update");
             if(stopUpdates == null) {
                 continue;
