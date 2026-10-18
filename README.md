@@ -14,10 +14,10 @@ A Java Spring Boot application that calculates the average predicted delay for b
 - National Transport Authority (NTA) GTFS-Realtime API
 
 ## Data Source
-Live transport predictions are retrieved from the National Transport Authority (NTA) GFTS-Realtime API
+Live transport predictions are retrieved from the National Transport Authority (NTA) GTFS-Realtime API. <br>
 To sign up for an API key and learn more: https://developer.nationaltransport.ie
 
-GTFS Data is provided "as is". The NTA is not responsible for any errors or inaccuracies.
+GTFS Data is provided "as is". The NTA is not responsible for any errors or inaccuracies. <br>
 Delay statistics are calculated from live arrival predictions and do not represent confirmed arrival times
 
 ## Getting Started
@@ -36,11 +36,11 @@ Register for an API key through the NTA developer portal and subscribe to the GT
 The Application reads the API key from an environment variable named NTA_API_KEY
 
 ### 4. Run the application
-Run BusReliabilityApplication.java from your IDE
+Run BusReliabilityApplication.java from your IDE <br>
 You can test by visiting:
 - http://localhost:8080/api/status - check that the application is running
 - http://localhost:8080/api/delays - view average predicted delay across all buses in Ireland
-- http://localhost:8080/api/delays?route=x - view predictions for a specific route by replacing x with the route name
+- http://localhost:8080/api/delays?route=x - view predictions for a specific route by replacing x with the route name <br>
 This application supports routes from Dublin Bus, Bus Éireann, and Go-Ahead
 
 ## Limitations
