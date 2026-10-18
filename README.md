@@ -11,7 +11,14 @@ A Java Spring Boot application that calculates the average predicted delay for b
 - Spring Boot
 - Maven
 - JUnit 5
-- National Transport Authority (NTA) GTFR-Realtime API
+- National Transport Authority (NTA) GTFS-Realtime API
+
+## Data Source
+Live transport predictions are retrieved from the National Transport Authority (NTA) GFTS-Realtime API
+To sign up for an API key and learn more: https://developer.nationaltransport.ie
+
+GTFS Data is provided "as is". The NTA is not responsible for any errors or inaccuracies.
+Delay statistics are calculated from live arrival predictions and do not represent confirmed arrival times
 
 ## Getting Started
 To run this project you will need:
