@@ -31,9 +31,9 @@ public class JsonDelayReaderTest {
                   ]
                 }
                 """;
-        ArrayList<Integer> delays = JsonDelayReader.extractDelays(json);
+        ArrayList<BusDelay> delays = JsonDelayReader.extractDelays(json);
         assertEquals(1, delays.size());
-        assertEquals(delays.get(0), 120);
+        assertEquals(delays.get(0).getDelaySeconds(), 120);
     }
 
     @Test
@@ -68,11 +68,11 @@ public class JsonDelayReaderTest {
                   ]
                 }
                 """;
-        ArrayList<Integer> delays = JsonDelayReader.extractDelays(json);
+        ArrayList<BusDelay> delays = JsonDelayReader.extractDelays(json);
         assertEquals(3, delays.size());
-        assertEquals(delays.get(0), 120);
-        assertEquals(delays.get(1), 60);
-        assertEquals(delays.get(2), 360);
+        assertEquals(delays.get(0).getDelaySeconds(), 120);
+        assertEquals(delays.get(1).getDelaySeconds(), 60);
+        assertEquals(delays.get(2).getDelaySeconds(), 360);
     }
 
     @Test
@@ -111,10 +111,10 @@ public class JsonDelayReaderTest {
                   ]
                 }
                 """;
-        ArrayList<Integer> delays = JsonDelayReader.extractDelays(json);
+        ArrayList<BusDelay> delays = JsonDelayReader.extractDelays(json);
         assertEquals(2, delays.size());
-        assertEquals(delays.get(0), 120);
-        assertEquals(delays.get(1), 360);
+        assertEquals(delays.get(0).getDelaySeconds(), 120);
+        assertEquals(delays.get(1).getDelaySeconds(), 360);
     }
 
 
