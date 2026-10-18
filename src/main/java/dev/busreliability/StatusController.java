@@ -22,7 +22,7 @@ public class StatusController {
     public Map<String, String> status() {
         HashMap<String, String> map = new HashMap<>();
         map.put("status", "running");
-        map.put("application", "Dublin Bus Reliability Tracker");
+        map.put("application", "Irish Bus Delay Tracker");
         return map;
     }
 

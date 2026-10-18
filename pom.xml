@@ -11,9 +11,9 @@
     </parent>
 
     <groupId>dev.busreliability</groupId>
-    <artifactId>dublin-bus-reliability-tracker</artifactId>
+    <artifactId>irish-bus-delay-tracker</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Dublin Bus Reliability Tracker</name>
+    <name>Irish Bus Delay Tracker</name>
     <properties>
             <maven.compiler.release>21</maven.compiler.release>
             <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
