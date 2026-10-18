@@ -43,6 +43,11 @@ public class StatusController {
         double averageDelay = DelayCalculator.calculateAverage(delayValues);
 
         Map<String, Object> result = new HashMap<>();
+        if(route == null) {
+            result.put("route", "All routes");
+        } else {
+            result.put("route", route);
+        }
         result.put("totalPredictions", delayValues.size());
         result.put("averagePredictedDelayMinutes", Math.round(averageDelay * 100.0) / 100.0);
         return result;
