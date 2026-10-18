@@ -11,6 +11,9 @@ import java.io.IOException;
 public class NtaApiService {
     private final HttpClient client = HttpClient.newHttpClient();
     private final String apiKey = System.getenv("NTA_API_KEY");
+    private String cachedResponse;
+    private long lastFetchTime = 0;
+
     public HttpRequest buildRequest(String url) {
         if(!hasApiKey()) {
             throw new IllegalStateException("NTA_API_KEY environment variabel missing");
@@ -19,8 +22,13 @@ public class NtaApiService {
     }
 
     public String fetchData(String url) throws IOException, InterruptedException {
-        HttpRequest request = buildRequest(url);
 
+        long currentTime = System.currentTimeMillis();
+        if (cachedResponse != null && currentTime - lastFetchTime <60_000){
+            return cachedResponse;
+        }
+
+        HttpRequest request = buildRequest(url);
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         System.out.println("HTTP status: " + response.statusCode());
@@ -28,7 +36,9 @@ public class NtaApiService {
             throw new IOException("NTA API returned HTTP " + response.statusCode());
         }
 
-        return response.body();
+        cachedResponse = response.body();
+        lastFetchTime = System.currentTimeMillis();
+        return cachedResponse;
     }
 
     public boolean hasApiKey() {
