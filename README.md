@@ -1,4 +1,4 @@
-# dublin-bus-reliability-tracker
+# irish-bus-delay-tracker
 A Java Spring Boot application that calculates the average predicted delay for bus routes across Ireland using live data from the National Transport Authority
 
 ## Features
