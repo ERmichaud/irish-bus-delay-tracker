@@ -16,7 +16,7 @@ public class NtaApiService {
 
     public HttpRequest buildRequest(String url) {
         if(!hasApiKey()) {
-            throw new IllegalStateException("NTA_API_KEY environment variabel missing");
+            throw new IllegalStateException("NTA_API_KEY environment variable missing");
         }
         return HttpRequest.newBuilder().uri(URI.create(url)).header("x-api-key", apiKey).GET().build();
     }
